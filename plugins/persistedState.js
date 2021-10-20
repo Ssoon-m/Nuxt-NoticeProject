@@ -7,13 +7,17 @@ export default ({ store, req }) => {
     paths: ["store","nav"],
     storage: {
       getItem: (key) => {
-        if (process.server) {
-          console.log(req.headers.cookie);
-          const parsedCookies = cookie.parse(req.headers.cookie);
-          return parsedCookies[key];
-        } else {
-          return Cookies.get(key);
+        try{
+          if (process.server) {
+            const parsedCookies = cookie.parse(req.headers.cookie);
+            return parsedCookies[key];
+          } else {
+            return Cookies.get(key);
+          }
+        }catch(e){
+          console.log(e)
         }
+        
       },
       setItem: (key, value) =>
         Cookies.set(key, value, { expires: 365, secure: false }),
