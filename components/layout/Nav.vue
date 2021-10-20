@@ -91,14 +91,6 @@ export default {
       loginState : false
     }
   },
-  mounted(){
-    let auth = localStorage.getItem('Auth'); 
-    if(auth != null){
-      let loginauth = JSON.parse(auth); 
-      this.$store.commit('nav/setLoginAuth',loginauth.loginstate);
-      this.loginState = this.getLoginState;
-    }
-  },
   computed:{
     drawer:{
       get(){
@@ -114,15 +106,7 @@ export default {
   },
   methods:{
     logout(){
-      let auth = localStorage.getItem('Auth');
-      let loginauth = JSON.parse(auth);
       this.$store.commit('nav/setLoginAuth',!loginauth.loginstate);
-
-      loginauth.loginstate = this.getLoginState;
-      this.loginState = this.getLoginState;
-      
-      localStorage.setItem('Auth',JSON.stringify(loginauth));
-      
       this.$router.push('/auth/login');
     }
   }
