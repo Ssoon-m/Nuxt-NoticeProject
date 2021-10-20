@@ -1,0 +1,25 @@
+{
+  "name": "NuxtLoginProject",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "cookie": "^0.4.1",
+    "core-js": "^3.15.1",
+    "js-cookie": "^3.0.1",
+    "nuxt": "^2.15.7",
+    "vee-validate": "^3.4.13",
+    "vuetify": "^2.5.5",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.1",
+    "express": "^4.17.1"
+  }
+}
