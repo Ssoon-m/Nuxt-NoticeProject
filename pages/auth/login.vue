@@ -6,7 +6,7 @@
             width="400"
         >
           <v-card-text class="text-center">
-            <div class="purple--text pt-5 text-h5">계정 로그인</div>
+            <div class="purple--text darken-3 pt-5 text-h5">계정 로그인</div>
           </v-card-text>
           <validation-observer v-slot="{ handleSubmit }">
               <v-form @submit.prevent="handleSubmit(onSubmit)" id="check-login-form">
@@ -25,7 +25,6 @@
                         label="이메일"
                         color="purple"
                         solo
-                        :counter="10"
                         :error-messages="errors[0]"
                     />
                       
@@ -67,7 +66,7 @@
           </validation-observer>
                    
           <div style="height:45px" class="d-flex justify-center align-center grey lighten-3">
-            <div><span class="text-h7">회원이 아니세요?</span>&nbsp<NuxtLink style="color:violet" to="/auth/signUp">회원가입</NuxtLink></div>
+            <div><span class="text-h7">회원이 아니세요?</span><NuxtLink style="color:violet" to="/auth/signUp">회원가입</NuxtLink></div>
           </div>
         </v-card>
       </v-col>
