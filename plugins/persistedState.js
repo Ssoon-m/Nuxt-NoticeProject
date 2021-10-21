@@ -15,7 +15,7 @@ export default ({ store, req }) => {
             return Cookies.get(key);
           }
         }catch(e){
-          console.log(e)
+        //  console.log(e)
         }
         
       },

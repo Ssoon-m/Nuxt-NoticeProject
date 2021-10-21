@@ -30,7 +30,7 @@ extend('password', {
 })
 
 extend('youtubeUrl', {
-  validate: value => /(http:|https:)?(\/\/)?(www\.)?(youtube.com|youyu.be)\/(watch|embed)?(\?v=|\/)?(\s+)?/.test(value),
+  validate: value => /^(http:|https:)?(\/\/)?(www\.)?(youtube.com|youyu.be)\/(watch|embed)?(\?v=|\/)?(\s+)?/.test(value),
   message: '{_field_}에는 유효한 유튜브 URL주소를 입력해주세요'
 })
 

@@ -57,6 +57,7 @@
                 multiple 
                 label="File input" 
                 outlined
+                accept="image/*"
                 dense
                 transition="scale-transition"
                 v-model="selectFile"
@@ -72,19 +73,30 @@
                   name="youtubeURL"
                   rules="youtubeUrl"
               >
+              
+              <div>
                 <v-text-field
                   solo
                   dense
                   dark
+                  :hide-details="errors[0] ? false : true"
+                  ref="urlerror"
                   :error-messages="errors[0]"
                   placeholder="유튜브 url 삽입"
                   background-color="indigo lighten-2"
                   prepend-inner-icon="mdi-file-video-outline"
+                  @input="urlError(errors[0])"
+                  @keydown.ctrl.v="urlError(errors[0])"
+                  @keydown.meta.v="urlError(errors[0])"
                   v-model="uploadVideoUrl"
-                  />
+                  /> 
+
+                  <v-btn @click="youtubePreview" class="pt-0" text color="purple">영상 미리보기</v-btn>
+              </div>
+
                 </validation-provider>
             
-              <template v-if="uploadVideoUrl">
+              <template v-if="preview">
                 <div class="grey video">
                   <div class="video-container">
                     <iframe width="500px" height="250px" :src="embedYoutubeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -133,10 +145,7 @@
                 solo
               >{{selectFile.name}}
               </v-textarea>
-
             </template>
-            
-
 
           <v-card-actions class="mt-10">
             <v-row justify="end">
@@ -162,7 +171,6 @@
         </v-form>
         </validation-observer>
 
-        
       </v-container>
     </v-card>
   </v-container>
@@ -188,6 +196,7 @@ export default {
     uploadFileList : [],
     nickName : '',
     email : '',
+    preview : false,
     uploaditems: [
       { name : '영상' , value : 'video'},
       { name : '사진,내용' , value : 'pictureAndContents'}
@@ -195,7 +204,9 @@ export default {
     upload_rule : [
       v => !!v || '필수 선택 사항입니다.'
     ],
-    uploadVideoUrl : ""
+    uploadVideoUrl : "",
+
+    videoUrlError : true
   }),
 
   middleware: 'authenticated',
@@ -234,7 +245,11 @@ export default {
       'boardInfo.uploadstyle'(){
         this.uploadVideoUrl = "";
         this.uploadFileList = [];
+    },
+    uploadVideoUrl(v){
+    //  console.log("$refs.urlerror : " + this.$refs.urlerror)
     }
+
   },
   methods: {
     setIndex(){
@@ -283,6 +298,13 @@ export default {
         }
         fileReader.readAsDataURL(value);
       })
+    },
+    youtubePreview(){
+      this.videoUrlError ? this.preview = false : this.preview = true
+    },
+    urlError(error){
+      error ? this.videoUrlError = true : this.videoUrlError = false;
+      console.log("this.videoUrlError : " + this.videoUrlError)
     },
     moveMain(){
       this.$router.push("/");

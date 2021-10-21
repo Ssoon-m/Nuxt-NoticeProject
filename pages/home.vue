@@ -85,7 +85,6 @@
                         :key="count"
                     >
                         <v-card-text 
-                            :key="i"
                             class="text--primary">
                             [일반스터디] 고양,파주 지역중심 웹 게임,어플 제작 같이 하실 분 모집합니다 사진
                         </v-card-text>
@@ -119,7 +118,6 @@
                         :key="count"
                     >
                         <v-card-text 
-                            :key="i"
                             class="text--primary">
                             [일반스터디] 고양,파주 지역중심 웹 게임,어플 제작 같이 하실 분 모집합니다 사진
                         </v-card-text>
