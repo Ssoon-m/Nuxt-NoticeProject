@@ -9,7 +9,7 @@
         <v-list-item-content>
           <NuxtLink style="text-decoration:none" to="/">
               <v-list-item-title class="text-h6 white--text">
-                CommunityProject
+                NuxtNoticeProject
               </v-list-item-title>
           </NuxtLink>
         </v-list-item-content>

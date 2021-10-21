@@ -4,8 +4,7 @@ import persistedState from './plugins/persistedState'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - NuxtLoginProject',
-    title: 'NuxtLoginProject',
+    title: 'NuxtNoticeProject',
     htmlAttrs: {
       lang: 'en'
     },
