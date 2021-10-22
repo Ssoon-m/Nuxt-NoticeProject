@@ -93,8 +93,8 @@ export default {
   name: 'Login',
   data () {
     return {
-      uid: null,
-      password: null,
+      uid: '',
+      password: '',
       notMatch : ''
     }
   },
@@ -102,15 +102,22 @@ export default {
     onSubmit () {
       let user = localStorage.getItem('Auth');
       let userInfo = JSON.parse(user);
-      if(userInfo.email == this.uid && userInfo.password == this.password){
-        this.notMatch = true;
-        userInfo.loginstate = 'true';
-        localStorage.setItem('Auth',JSON.stringify(userInfo));
-        this.$store.commit('nav/setLoginAuth',userInfo.loginstate);
-        this.$router.push('/');
+
+      if(userInfo !== null){
+        if(userInfo.email == this.uid && userInfo.password == this.password){
+          console.log('if문 들어옴....');
+          this.notMatch = true;
+          userInfo.loginstate = 'true';
+          localStorage.setItem('Auth',JSON.stringify(userInfo));
+          this.$store.commit('nav/setLoginAuth',userInfo.loginstate);
+          this.$router.push('/');
+        }else{
+          this.notMatch = 'false';
+        }
       }else{
         this.notMatch = 'false';
       }
+      
     },
     signUp(){
       this.$router.push('/auth/signUp')
