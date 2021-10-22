@@ -44,7 +44,7 @@
             <v-divider />
 
             <div class="d-sm-flex">
-                <div  style="width:97%" v-if="boardDetail.uploadstyle === 'pictureAndContents'" class="pa-4">
+                <div style="width:96%" v-if="boardDetail.uploadstyle === 'pictureAndContents'" class="pa-4">
                     <template>
                     <v-carousel
                       cycle
@@ -71,9 +71,8 @@
                     </v-carousel>
                   </template>
                   
-                    <v-card-text>
-                        {{boardDetail.contents}}
-                    </v-card-text>
+                  <p v-html="content"></p>
+
                 </div>
 
                 <div v-if="boardDetail.uploadstyle === 'video'" class="grey video">
@@ -83,10 +82,15 @@
                 </div>
 
                 <v-divider vertical></v-divider>
-                <div style="width:3%"
-                    v-if="$vuetify.breakpoint.smAndUp" 
-                    class="d-flex flex-column justify-center align-center">
-                 
+
+                <div v-if="$vuetify.breakpoint.smAndUp">
+                    <div 
+                        style="width:70px;
+                                height:110px;
+                                position:sticky;
+                                top:56px"
+
+                        class=" mt-5 d-flex flex-column align-center">
                         <v-btn
                         @click="GoodOrBad(1)"
                         icon>
@@ -100,7 +104,9 @@
                             icon>
                             <v-icon>mdi-arrow-down</v-icon>
                         </v-btn>
+                    </div>
                 </div>
+                
 
                 <div v-else class="d-flex-none">
                     <v-divider></v-divider>
@@ -132,7 +138,7 @@
 
         <v-card class="mt-10">
             <div class="pa-4 grey lighten-3">댓글 <span>12</span></div>
-            <div v-for="value in 4"
+            <div v-for="value in 6"
                 :key="value">
                 <UserProfile />
                 <v-card-text class="font-weight-medium black--text">
@@ -184,6 +190,12 @@ export default{
         //this.boardInfo.youtubeUrl = this.embedYoutubeUrl;
         //this.boardInfo.uploadImage = this.uploadFileList;
 
+    },
+    computed:{
+        content(){
+            return this.boardDetail.contents.split('\n').join('<br>');
+            //return this.content.replace(/(?:\r\n|\r|\n)/g, '<br>'); 정규식
+        }
     },
     methods : {
         Hit(){

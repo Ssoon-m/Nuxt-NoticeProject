@@ -28,9 +28,9 @@
               @keypress.enter.prevent
               v-model="boardInfo.title"
               label="제목을 입력해 주세요"
-              autofocus
-              class=" pa-0 my-2"
               solo
+              autofocus
+              class="pa-0 my-2"
               hide-details
             />
 
@@ -232,8 +232,11 @@ export default {
     getTime(){
       let today = new Date();
       let hours = today.getHours();
+      if(hours === 0) hours = "00";
       let minutes = today.getMinutes();
+      if(minutes < 10) minutes = "0" + minutes;
       let seconds = today.getSeconds();
+      if(seconds < 10) seconds = "0" + seconds;
       let boardtime = hours + ":" + minutes + ":" + seconds;
       return boardtime
     },
@@ -338,4 +341,6 @@ export default {
     width: 100%;
     height: 100%;
   }
+
+ 
 </style>

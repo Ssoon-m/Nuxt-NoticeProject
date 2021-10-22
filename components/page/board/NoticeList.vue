@@ -14,48 +14,8 @@
 
 
 
-    <v-card v-if="boardList.length === 0">
-      <v-simple-table class="grey lighten-3" >
-        <template v-slot:default>
-          <tbody>
-              <tr
-                class="tr-pointer"
-                v-for="(i,key) in 4"
-                :key="key"
-              >
-                <td>
-                    <v-card-subtitle class="grey--text pa-0">#{{i}}</v-card-subtitle>
-                    <span class="blue--text font-weight-bold">글을 작성해주세요</span>
-                </td>
-                
-                <td class="d-flex pa-0">
-                  <v-spacer></v-spacer>
-                  <div class="pa-4 d-none d-sm-flex align-center">
-                      <v-icon small color="black">mdi-comment</v-icon>
-                      <span class="mr-2 text-body-2">12</span>
-               
-                      <v-icon small color="black">mdi-thumb-up</v-icon>
-                      <span class="mr-2 text-body-2">1</span>
-                      
-                      <v-icon small color="black">mdi-eye</v-icon>
-                      <span class="text-body-2">120</span>
-                  </div>
-                  <UserProfile>
-                      <template v-slot:user>
-                          <span>유저이름</span>
-                      </template>
-                      <template v-slot:day>
-                          <div class="pr-1 divide">2021-10-19</div>
-                      </template>    
-                      <template v-slot:time>
-                          <div class="pl-1">21:11:12</div>
-                      </template>
-                  </UserProfile>
-                </td>
-              </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
+    <v-card class="elevation-0 grey lighten-2" v-if="boardList.length === 0">
+      <p class="pa-10 text-center text-h4 text-bold">작성된 글이 없습니다.</p>
     </v-card>
 
     <v-card>
