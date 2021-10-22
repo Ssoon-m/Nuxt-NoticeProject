@@ -42,34 +42,35 @@
             <v-card-subtitle class="pb-0">#{{boardDetail.index}}</v-card-subtitle>
             <v-card-title class="pt-0">{{boardDetail.title}}</v-card-title>
             <v-divider />
-
+            
+            
             <div class="d-sm-flex">
                 <div style="width:96%" v-if="boardDetail.uploadstyle === 'pictureAndContents'" class="pa-4">
-                    <template>
-                    <v-carousel
-                      cycle
-                      height="200"
-                      hide-delimiter-background
-                      show-arrows-on-hover
-                    >
-                      <v-carousel-item
-                        v-for="(item, i) in boardDetail.uploadImage"
-                        :key="i"
-                      >
-                          <v-row
-                            class="fill-height"
-                            align="center"
-                            justify="center"
-                          >
-                            <v-img
-                              :src="item.url"
-                              height="100%"
-                              max-width="200">
-                            </v-img>
-                          </v-row>
-                      </v-carousel-item>
-                    </v-carousel>
-                  </template>
+                    <template v-if="boardDetail.uploadImage.length != 0">
+                        <v-carousel
+                        cycle
+                        height="200"
+                        hide-delimiter-background
+                        show-arrows-on-hover
+                        >
+                            <v-carousel-item
+                                v-for="(item, i) in boardDetail.uploadImage"
+                                :key="i"
+                            >
+                            <v-row
+                                class="fill-height"
+                                align="center"
+                                justify="center"
+                            >
+                                <v-img
+                                :src="item.url"
+                                height="100%"
+                                max-width="200">
+                                </v-img>
+                            </v-row>
+                            </v-carousel-item>
+                        </v-carousel>
+                     </template>
                   
                   <p v-html="content"></p>
 
@@ -175,8 +176,6 @@ export default{
             JboardStorage.forEach((boardList,key) => {
                 if(boardList.index == this.paramId){
                     this.boardDetail = JboardStorage[key];
-//                    console.log("keykeykeykeyk : " + key)
-//                    console.log(this.boardDetail);
                     this.paramId = key;
                     this.boardDetail.hit++;
                     this.Hit();
