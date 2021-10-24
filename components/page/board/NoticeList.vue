@@ -26,8 +26,7 @@
                 class="tr-pointer"
                 v-for="item in boardList"
                 :key="item.index"
-          
-                @click="noticeDetail(`${item.index}`)"
+                @click="boardDetail(`${item.index}`)"
               >
                 <td>
                     <v-card-subtitle class="grey--text pa-0"><span class="boardNo">#{{item.index}}</span></v-card-subtitle>
@@ -114,7 +113,7 @@ import BoardBanner from '@/components/page/BoardBanner'
       }
     },
     methods : {
-      noticeDetail(index){
+      boardDetail(index){
         this.$router.push(`/boarddetail/${index}`);
       }
     }

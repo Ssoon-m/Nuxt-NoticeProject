@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-10">
+  <v-container class="mt-10" style="max-width:1000px;">
     <p class="text-h5">새 글 쓰기</p>
     <v-card>
       <UserProfile>
@@ -143,7 +143,7 @@
                 label="글을 입력"
                 hide-details
                 solo
-              >{{selectFile.name}}
+              >
               </v-textarea>
             </template>
 
@@ -189,7 +189,7 @@ export default {
       title : "",
       contents : "",
       uploadstyle : "",
-      yeaÍr : "",
+      year : "",
       time : ""
     },
     selectFile : [],
@@ -248,11 +248,7 @@ export default {
       'boardInfo.uploadstyle'(){
         this.uploadVideoUrl = "";
         this.uploadFileList = [];
-    },
-    uploadVideoUrl(v){
-    //  console.log("$refs.urlerror : " + this.$refs.urlerror)
     }
-
   },
   methods: {
     setIndex(){

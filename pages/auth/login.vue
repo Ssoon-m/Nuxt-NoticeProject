@@ -105,7 +105,6 @@ export default {
 
       if(userInfo !== null){
         if(userInfo.email == this.uid && userInfo.password == this.password){
-          console.log('if문 들어옴....');
           this.notMatch = true;
           userInfo.loginstate = 'true';
           localStorage.setItem('Auth',JSON.stringify(userInfo));
