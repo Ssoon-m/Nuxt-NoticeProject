@@ -1,5 +1,5 @@
 <template>
-    <v-container class="mt-10" style="max-width:1000px;">
+    <v-container class="mt-10" style="max-width:1000px; min-width:380px;">
 
         <v-row justify="end" class="mb-2">
             <v-col cols="auto" >
@@ -11,7 +11,7 @@
             </v-col>
         </v-row>
 
-        <v-card style="min-width:380px">
+        <v-card>
             <v-row dense >
                 <v-col 
                     cols="7">
@@ -61,12 +61,12 @@
                         <v-list>
                             <v-list-item class="pointer">
                               <v-list-item-title @click='boardModify(`${$route.params.id}`)'>
-                                    수정
+                                    <v-icon>mdi-pencil-box-outline</v-icon>수정
                               </v-list-item-title>
                             </v-list-item>
                             <v-list-item class="pointer">
                               <v-list-item-title @click='boardDelete'>
-                                    삭제
+                                    <v-icon>mdi-trash-can-outline</v-icon>삭제
                               </v-list-item-title>
                             </v-list-item>
                         </v-list>
