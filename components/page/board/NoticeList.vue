@@ -24,7 +24,7 @@
           <tbody>
               <tr
                 class="tr-pointer"
-                v-for="item in boardList"
+                v-for="item in boardListPaging"
                 :key="item.index"
                 @click="boardDetail(`${item.index}`)"
               >
@@ -72,13 +72,13 @@
       </v-simple-table>
     </v-card>
 
-    <!-- <div class="mt-6 text-center">
-        <v-pagination
+    <div class="mt-6 text-center">
+      <v-pagination
         v-model="page"
-        :length="15"
+        :length="pagination"
         :total-visible="7"
-        ></v-pagination>
-    </div> -->
+      ></v-pagination>
+    </div> 
   </v-container>
 </template>
 
@@ -94,22 +94,58 @@ import BoardBanner from '@/components/page/BoardBanner'
       BoardBanner,
       WriteButton
     },
+    props: {
+      pageNo : {
+        type : Number,
+        default : 1
+      }
+    },
+    data () {
+      return {
+        boardList : [],
+        boardListPaging : [],
+        nickName : '',
+        pagination : 0,
+        page : 1,
+        show : 10
+      }
+    },
     mounted(){
       let boardStorage = localStorage.getItem('BoardList');
       if(boardStorage != null){
         let JboardStorage = JSON.parse(boardStorage).reverse();
         this.boardList = [...JboardStorage];
-      }
+
+          // noticelist/page    
+          // page = 1
       
+          //let page = this.$route.params.page;
+
+          let show = this.show;
+
+          let start_page = ((1 - 1) * show) + 1; 
+          let end_page = 1 * show;               
+
+          this.boardListPaging = this.boardList.slice(start_page-1,end_page); 
+
+          const pageNav = 5;
+
+          let total_page = this.boardList.length;
+          this.pagination = Math.ceil(total_page/show); 
+
+      }
       let user = localStorage.getItem('Auth');
       let userInfo = JSON.parse(user);
       this.nickName = userInfo.nickName;
 
     },
-    data () {
-      return {
-        boardList : [],
-        nickName : ''
+    watch : {
+      page(page){
+          let show = this.show;
+          let start_page = ((page - 1) * show) + 1; 
+          let end_page = page * show;               
+
+          this.boardListPaging = this.boardList.slice(start_page-1,end_page); 
       }
     },
     methods : {
