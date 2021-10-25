@@ -10,9 +10,11 @@
                 </WriteButton>
             </v-col>
         </v-row>
-        <v-card >
-            <v-row dense>
-                <v-col>
+
+        <v-card style="min-width:380px">
+            <v-row dense >
+                <v-col 
+                    cols="7">
                     <UserProfile>
                         <template v-slot:user>
                             <span>samchon</span>
@@ -25,7 +27,7 @@
                         </template>
                     </UserProfile>
                 </v-col>
-                <v-col style="position:relative;" >
+                <v-col cols="5" style="position:relative;" >
                     <div 
                         class="pa-4"
                         style="position:absolute;
@@ -246,6 +248,8 @@ export default{
         }
     },
     mounted(){
+        // userId 가져오기
+
         let boardStorage = localStorage.getItem('BoardList');
         this.paramId = this.$route.params.id;
         if(boardStorage != null){
