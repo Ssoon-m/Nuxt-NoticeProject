@@ -86,7 +86,7 @@ export default {
       ],
       Categoryitems: [
         { title: '커뮤니티', icon: 'mdi-chat', to: '/home' },
-        { title: '게시판리스트', icon: 'mdi-image', to: '/' }
+        { title: '게시판리스트', icon: 'mdi-image', to: '/boards/1' }
       ],
       loginState : false
     }

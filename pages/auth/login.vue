@@ -109,7 +109,7 @@ export default {
           userInfo.loginstate = 'true';
           localStorage.setItem('Auth',JSON.stringify(userInfo));
           this.$store.commit('nav/setLoginAuth',userInfo.loginstate);
-          this.$router.push('/');
+          this.$router.push('/boards/1');
         }else{
           this.notMatch = 'false';
         }

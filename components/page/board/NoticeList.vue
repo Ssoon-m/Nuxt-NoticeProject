@@ -37,7 +37,10 @@
                   <v-spacer></v-spacer>
                   <div class="pa-4 d-none d-sm-flex align-center">
                       <v-icon small color="black">mdi-comment</v-icon>
-                      <span class="mr-2 text-body-2">12</span>
+                      
+                      <span v-if="item.comment.length" class="mr-2 text-body-2">{{ item.comment.length }}</span>
+                      <span v-else class="mr-2 text-body-2">0</span>
+                      
                       <template v-if="item.goodOrBad < 0">
                           <v-icon small color="black">mdi-thumb-down</v-icon>
                           <span class="mr-2 text-body-2">{{item.goodOrBad}}</span>
