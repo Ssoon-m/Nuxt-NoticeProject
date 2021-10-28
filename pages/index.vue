@@ -7,5 +7,6 @@ export default {
 
   components: {
   },
+  middleware: 'authenticated'
 }
 </script>
