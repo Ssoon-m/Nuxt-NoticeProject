@@ -278,8 +278,6 @@ export default {
       this.$store.commit('store/setIndex')
     },
     onSubmit () {
-      
-      
 
       let boardStorage = [];
 

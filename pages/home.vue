@@ -2,7 +2,6 @@
     <v-container>
         <Banner />
         <v-row class="mt-sm-10" dense>
-            
             <v-col
                 cols="12"
                 sm="auto"

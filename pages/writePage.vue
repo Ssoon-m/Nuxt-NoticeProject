@@ -28,10 +28,10 @@
               @keypress.enter.prevent
               v-model="boardInfo.title"
               label="제목을 입력해 주세요"
-              solo
               autofocus
-              class="pa-0 my-2"
-              hide-details
+              solo
+              :rules="title_rule"
+              
             />
 
             <v-row>
@@ -85,9 +85,7 @@
                   placeholder="유튜브 url 삽입"
                   background-color="indigo lighten-2"
                   prepend-inner-icon="mdi-file-video-outline"
-                  @input="urlError(errors[0])"
-                  @keydown.ctrl.v="urlError(errors[0])"
-                  @keydown.meta.v="urlError(errors[0])"
+                  @keydown="errors[0] ? videoUrlError = true : videoUrlError = false"
                   v-model="uploadVideoUrl"
                   /> 
 
@@ -204,6 +202,9 @@ export default {
     upload_rule : [
       v => !!v || '필수 선택 사항입니다.'
     ],
+    title_rule : [
+      v => !!v || '필수 입력 사항입니다.'
+    ],
     uploadVideoUrl : "",
 
     videoUrlError : true
@@ -255,7 +256,19 @@ export default {
       this.$store.commit('store/setIndex')
     },
     onSubmit () {
-      
+
+      if(!this.boardInfo.uploadstyle) return;
+
+      switch(this.boardInfo.uploadstyle){
+        case 'pictureAndContents' : 
+          if(!(this.boardInfo.contents && this.boardInfo.title)) return;
+          break;
+        case 'video' : 
+          if(!(this.boardInfo.title && this.embedYoutubeUrl)) return;
+          break;
+      }
+   
+
       this.setIndex();
 
       let boardStorage = [];
@@ -299,17 +312,16 @@ export default {
       })
     },
     youtubePreview(){
+      console.log("this.videoUrlError : " + this.videoUrlError );
       this.videoUrlError ? this.preview = false : this.preview = true
-    },
-    urlError(error){
-      error ? this.videoUrlError = true : this.videoUrlError = false;
-      console.log("this.videoUrlError : " + this.videoUrlError)
     },
     moveMain(){
       this.$router.push("/");
     }
   }
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -338,5 +350,5 @@ export default {
     height: 100%;
   }
 
- 
 </style>
+ 

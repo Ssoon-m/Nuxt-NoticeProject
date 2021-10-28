@@ -119,20 +119,21 @@ import BoardBanner from '@/components/page/BoardBanner'
           // noticelist/page    
           // page = 1
       
-          //let page = this.$route.params.page;
+          this.page = this.pageNo;
 
           let show = this.show;
 
-          let start_page = ((1 - 1) * show) + 1; 
-          let end_page = 1 * show;               
+          let start_page = ((this.page - 1) * show) + 1; 
+          let end_page = this.page * show;               
 
           this.boardListPaging = this.boardList.slice(start_page-1,end_page); 
 
           const pageNav = 5;
 
           let total_page = this.boardList.length;
+          console.log("total_page : " + total_page);
           this.pagination = Math.ceil(total_page/show); 
-
+          console.log("pagination : " + this.pagination);
       }
       let user = localStorage.getItem('Auth');
       let userInfo = JSON.parse(user);
@@ -141,11 +142,7 @@ import BoardBanner from '@/components/page/BoardBanner'
     },
     watch : {
       page(page){
-          let show = this.show;
-          let start_page = ((page - 1) * show) + 1; 
-          let end_page = page * show;               
-
-          this.boardListPaging = this.boardList.slice(start_page-1,end_page); 
+          this.$router.push(`/boards/${page}`);
       }
     },
     methods : {
