@@ -271,7 +271,6 @@ export default {
 
       this.setIndex();
 
-      let boardStorage = [];
       this.boardInfo.index = this.getIndex;
       this.boardInfo.year = this.getYear;
       this.boardInfo.time = this.getTime;
@@ -283,14 +282,10 @@ export default {
       
       let JboardList = JSON.parse(boardList); // [{a : 1},{1 : 2}]
       if(JboardList != null){
-        JboardList.forEach((item,index)=>{
-          boardStorage.push(JboardList[index]);
-        })
+        JboardList.push(boardInfo);
       }
       
-      boardStorage.push(boardInfo);
-
-      localStorage.setItem('BoardList' , JSON.stringify(boardStorage));
+      localStorage.setItem('BoardList' , JSON.stringify(JboardList));
       
       this.$router.push('/')
     },
@@ -312,7 +307,6 @@ export default {
       })
     },
     youtubePreview(){
-      console.log("this.videoUrlError : " + this.videoUrlError );
       this.videoUrlError ? this.preview = false : this.preview = true
     },
     moveMain(){

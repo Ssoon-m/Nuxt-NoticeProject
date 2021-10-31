@@ -281,7 +281,7 @@ export default {
 
       let boardStorage = [];
 
-      this.boardInfo.index = this.$route.params.id;; // 수정이기 때문에 인덱스 증가시키지 않는다.
+      this.boardInfo.index = this.$route.params.id; // 수정이기 때문에 인덱스 증가시키지 않는다.
       this.boardInfo.year = this.getYear;
       this.boardInfo.time = this.getTime;
       this.boardInfo.youtubeUrl = this.embedYoutubeUrl;
@@ -320,7 +320,6 @@ export default {
     },
     urlError(error){
       error ? this.videoUrlError = true : this.videoUrlError = false;
-      console.log("this.videoUrlError : " + this.videoUrlError)
     },
     moveMain(){
       this.$router.push("/");

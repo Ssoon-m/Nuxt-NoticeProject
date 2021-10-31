@@ -17,7 +17,7 @@
                     cols="7">
                     <UserProfile>
                         <template v-slot:user>
-                            <span>samchon</span>
+                            <span>{{userName}}</span>
                         </template>
                         <template v-slot:day>
                             <div class="pr-1 divide">{{boardDetail.year}}</div>
@@ -244,20 +244,31 @@ export default{
             comment : '', // 글 작성
             Listcomments : [],
 
-           
+            userName : ''
         }
     },
     mounted(){
         // userId 가져오기
+        let userInfo = localStorage.getItem('Auth');
+        if(userInfo != null){
+            let JuserInfo = JSON.parse(userInfo);
+            this.userName = JuserInfo.nickName;
+        }   
 
         let boardStorage = localStorage.getItem('BoardList');
         this.paramId = this.$route.params.id;
         if(boardStorage != null){
-         //   console.log("mounted : " + boardStorage); // title , contents , uploadstyle
             let JboardStorage = JSON.parse(boardStorage);
             JboardStorage.forEach((boardList,key) => { // 1이 나와야 하는데 9가 나옴....
                 if(boardList.index == this.paramId){
-                    this.boardDetail = JboardStorage[key];
+                    // boardDetail : {}
+
+                    // 1.
+                    //Object.assign(this.boardDetail,JboardStorage[key]);
+                    // 2.
+                    this.boardDetail = Object.assign({},JboardStorage[key]);
+                    //this.boardDetail = JboardStorage[key];
+                    
                     this.paramId = key;
                     this.boardDetail.hit++;
                     this.Listcomments = JboardStorage[key].comment;
@@ -295,12 +306,10 @@ export default{
         },
         writeComment(){
             if(this.comment){
-                console.log("this.paramId : " + this.paramId);
                 let boardList = localStorage.getItem('BoardList');
                 let JboardList = JSON.parse(boardList);
                 let countComment = JboardList[this.paramId].comment.length;
                 if(countComment === undefined){
-                    console.log("if문 들어왔습니다.");
                     let comments = [];
                     comments.push(this.comment)
                     JboardList[this.paramId].comment = comments;                    
