@@ -4,7 +4,7 @@
         dense
         type="error"
     >
-    존재하지 않는 회원입니다.
+    존재하지 않는 회원입니다!!!!
     </v-alert>
 </template>
 
